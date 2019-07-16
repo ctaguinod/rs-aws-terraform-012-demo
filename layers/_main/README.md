@@ -46,6 +46,5 @@ When prompted, check the plan and then respond in the affirmative.
 | Name | Description |
 |------|-------------|
 | amg | Account Management Guidelines |
-| s3\_terraform\_bucket\_id | S3 bucket id for Terraform state files |
-| s3\_terraform\_bucket\_region | S3 bucket region |
+| s3\_terraform | S3 bucket for Terraform state files |
 | terraform\_remote\_state\_configuration\_example | Terraform block to put into the build layers |
