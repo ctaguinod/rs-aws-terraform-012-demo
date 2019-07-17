@@ -10,3 +10,7 @@
 
 # Misc
 disabled/
+
+# PEM
+*.pem
+*.pem.*

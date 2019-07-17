@@ -15,7 +15,7 @@ data "terraform_remote_state" "base_network" {
   backend = "s3"
 
   config = {
-    bucket = "rs-tfstate-626499166183-ap-southeast-1"
+    bucket = local.s3_terraform_bucket
     key    = "000base/terraform.tfstate"
     region = var.region
   }
