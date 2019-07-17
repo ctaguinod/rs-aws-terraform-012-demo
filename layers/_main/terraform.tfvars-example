@@ -4,7 +4,7 @@
 ###############################################################################
 amg_header        = "Customer is being managed manually via the AWS Console. Do not make changes to existing resources via CloudFormation."
 janus             = "Janus Link Here"
-wiki              = "One Wiki Like Here"
+wiki              = "One Wiki Link Here"
 github            = "Github Link Here"
 service_level     = "Service Level Here (e.g. Aviator)"
 change_management = "SysOps (manual changes)"
