@@ -38,6 +38,10 @@ locals {
   notification_topic      = data.terraform_remote_state.base_network.outputs.sns_topic.topic_arn
 }
 
+###############################################################################
+# Remote State Output
+###############################################################################
+
 output "remote_state" {
   value = <<EOF
 
