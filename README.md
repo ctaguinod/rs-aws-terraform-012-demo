@@ -26,7 +26,6 @@ terraform apply
 1. Create `terraform.tfvars` from sample file and fill in with correct parameters
 ```
 cd ../000base/
-cd rs-aws-terraform-012-demo/layers/_main/
 cp terraform.tfvars-example terraform.tfvars
 ```
 2. Modify `main.tf` and update correct parameters for the remote state under the terraform block.
@@ -47,7 +46,6 @@ terraform apply
 1. Create `terraform.tfvars` from sample file and fill in with correct parameters
 ```
 cd ../100compute/
-cd rs-aws-terraform-012-demo/layers/_main/
 cp terraform.tfvars-example terraform.tfvars
 ```
 
