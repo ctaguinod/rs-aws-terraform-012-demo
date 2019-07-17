@@ -1,4 +1,30 @@
 ###############################################################################
+# Locals
+###############################################################################
+locals {
+  custom_tags = [
+    {
+      CustomTag1 = "CustomTagValue1"
+      CustomTag2 = "CustomTagValue2"
+    }
+  ]
+
+  private_subnet_tags = [
+    {
+      PrivateSubnetTag1 = "PrivateSubnetTagValue1"
+      PrivateSubnetTag2 = "PrivateSubnetTagValue2"
+    }
+  ]
+
+  public_subnet_tags = [
+    {
+      PublicSubnetTag1 = "PublicSubnetTagValue1"
+      PublicSubnetTag2 = "PublicSubnetTagValue2"
+    }
+  ]
+}
+
+###############################################################################
 # Base Network
 # https://github.com/rackspace-infrastructure-automation/aws-terraform-vpc_basenetwork
 ###############################################################################
@@ -13,18 +39,10 @@ module "base_network" {
   build_nat_gateways  = var.build_nat_gateways
   environment         = var.environment
   az_count            = var.az_count
-  custom_tags = {
-    CustomTag1 = "CustomTagValue1"
-    CustomTag2 = "CustomTagValue3"
-  }
-  private_subnet_tags = {
-    PrivateSubnetTag1 = "PrivateSubnetTagValue1"
-    PrivateSubnetTag2 = "PrivateSubnetTagValue2"
-  }
-  public_subnet_tags = {
-    PublicSubnetTag1 = "PublicSubnetTagValue1"
-    PublicSubnetTag1 = "PublicSubnetTagValue1"
-  }
+  # Custom Tags
+  custom_tags         = local.custom_tags[0]
+  private_subnet_tags = local.private_subnet_tags[0]
+  public_subnet_tags  = local.public_subnet_tags[0]
 }
 
 output "base_network" {
