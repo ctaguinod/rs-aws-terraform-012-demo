@@ -20,6 +20,17 @@ output "summary" {
 | Endpoint | ${module.rds-read-replica.db_endpoint_address}|
 | Internal DNS | ${aws_route53_record.rds-read-replica.fqdn} |
 
+| memcached |  |
+|---|---|
+| Endpoint | ${module.elasticache_memcached.elasticache_endpoint}|
+| Internal DNS | ${aws_route53_record.elasticache_memcached.fqdn} |
+
+| redis |  |
+|---|---|
+| Endpoint | ${module.elasticache_redis.elasticache_endpoint}|
+| Internal DNS | ${aws_route53_record.elasticache_redis.fqdn} |
+
+
 EOF
 
   description = "200data Layer Outputs Summary `terraform output summary` "

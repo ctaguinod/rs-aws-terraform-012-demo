@@ -19,3 +19,11 @@ variable "env" {
   description = "Short environment variable, e.g. Dev, Prod, Test"
   default     = "Dev"
 }
+
+###############################################################################
+# Variables - VPC
+###############################################################################
+variable "vpc_cidr" {
+  description = "VPC CIDR"
+  default     = "10.10.0.0/16"
+}

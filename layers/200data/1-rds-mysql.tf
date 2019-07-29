@@ -22,7 +22,7 @@ resource "aws_security_group" "MySQLSecurityGroup" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["172.20.0.0/16"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   egress {
@@ -119,11 +119,11 @@ module "rds-read-replica" {
   engine              = "mysql"
   engine_version      = "5.6.37" # Should be same version as master
   instance_class      = "db.t3.micro"
-  storage_size        = "20"                              # Same size from master 
-  username            = "dbadmin"                         # Same User from master
-  password            = ""                                # Retrieved from source DB
-  read_replica        = true                              # Required
-  source_db           = module.rds-master.db_instance_arn # Master RDS ARN
+  storage_size        = "20"                          # Same size from master 
+  username            = "dbadmin"                     # Same User from master
+  password            = ""                            # Retrieved from source DB
+  read_replica        = true                          # Required
+  source_db           = module.rds-master.db_instance # Master RDS ARN / module.rds-master.db_instance_arn
   environment         = var.environment
   tags                = local.tags
   create_subnet_group = false
