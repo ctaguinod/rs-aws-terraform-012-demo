@@ -110,13 +110,14 @@ output rds-master {
 # RDS - MySQL Read Replica
 # https://github.com/rackspace-infrastructure-automation/aws-terraform-rds
 ###############################################################################
+
 module "rds-read-replica" {
   source              = "github.com/rackspace-infrastructure-automation/aws-terraform-rds//?ref=tf_0.12-upgrade"
   subnets             = local.private_subnets
   security_groups     = [aws_security_group.MySQLSecurityGroup.id]
   name                = "rds-read-replica"
   engine              = "mysql"
-  engine_version      = "5.6.37" # Should be same version Prod Instance
+  engine_version      = "5.6.37" # Should be same version as master
   instance_class      = "db.t3.micro"
   storage_size        = "20"                              # Same size from master 
   username            = "dbadmin"                         # Same User from master
@@ -125,8 +126,8 @@ module "rds-read-replica" {
   source_db           = module.rds-master.db_instance_arn # Master RDS ARN
   environment         = var.environment
   tags                = local.tags
-  create_subnet_group = true
-  create_option_group = true
+  create_subnet_group = false
+  create_option_group = false
   storage_encrypted   = true
 }
 
