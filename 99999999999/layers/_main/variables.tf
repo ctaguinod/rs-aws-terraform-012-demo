@@ -1,12 +1,12 @@
 ###############################################################################
-# Variables
+# Environment
 ###############################################################################
 variable "aws_account_id" {
-  description = "AWS Account ID"
+  description = "The account ID you are building into."
 }
 
 variable "region" {
-  description = "Default Region"
+  description = "The AWS region the state should reside in."
   default     = "ap-southeast-1"
 }
 
@@ -20,6 +20,9 @@ variable "env" {
   default     = "Dev"
 }
 
+###############################################################################
+# Customer Info / AMG 
+###############################################################################
 variable "amg_header" {
   default     = "Customer is being managed manually via the AWS Console. Do not make changes to existing resources via CloudFormation."
   description = "Account Management Guideline Header"
@@ -27,14 +30,17 @@ variable "amg_header" {
 
 variable "janus" {
   description = "Janus URL"
+  default     = ""
 }
 
 variable "wiki" {
   description = "One Wiki URL"
+  default     = ""
 }
 
 variable "github" {
   description = "Github URL"
+  default     = ""
 }
 
 variable "service_level" {
