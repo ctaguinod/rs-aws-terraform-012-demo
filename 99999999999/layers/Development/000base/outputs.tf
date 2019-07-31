@@ -107,7 +107,7 @@ output "state_import_example" {
   value = <<EOF
 
 
-  data "terraform_remote_state" "000base" {
+  data "terraform_remote_state" "base_network" {
     backend = "s3"
 
     config = {

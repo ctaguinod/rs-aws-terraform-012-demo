@@ -20,10 +20,9 @@ provider "template" {
   version = "~> 2.0"
 }
 
-
 locals {
   tags = {
-    Environment     = "${var.environment}"
+    Environment     = var.environment
     ServiceProvider = "Rackspace"
   }
 }
