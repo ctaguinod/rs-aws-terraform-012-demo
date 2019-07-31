@@ -2,12 +2,10 @@
 # State Import Example
 # terraform output state_import_example
 ###############################################################################
-
 output "state_import_example" {
   description = "An example to use this layers state in another."
 
   value = <<EOF
-
 
   data "terraform_remote_state" "data" {
     backend = "s3"
@@ -63,13 +61,18 @@ EOF
 # RDS 
 ###############################################################################
 output rds_master {
-  value = module.rds_master
+  value       = module.rds_master
   description = "RDS MySQL Master Output"
 }
 
 output rds_read_replica {
-  value = module.rds_read_replica
+  value       = module.rds_read_replica
   description = "RDS MySQL Read Replica Output"
+}
+
+output sg_rds_id {
+  value       = aws_security_group.rds.id
+  description = "RDS SG ID"
 }
 
 ###############################################################################
@@ -81,4 +84,14 @@ output "elasticache_memcached" {
 
 output "elasticache_redis" {
   value = module.elasticache_redis
+}
+
+output sg_memcached_id {
+  value       = aws_security_group.memcached.id
+  description = "MemCached SG ID"
+}
+
+output sg_redis_id {
+  value       = aws_security_group.redis.id
+  description = "Redis SG ID"
 }

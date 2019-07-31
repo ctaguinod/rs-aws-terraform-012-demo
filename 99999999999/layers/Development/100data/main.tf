@@ -57,6 +57,11 @@ data "terraform_remote_state" "main_state" {
   }
 }
 
+# Remote State Locals
+locals {
+  state_bucket_id = data.terraform_remote_state.main_state.outputs.state_bucket_id
+}
+
 # 000base 
 # Get sample config from 000base layer `terraform output state_import_example`
 # A name must start with a letter and may contain only letters, digits, underscores, and dashes.
@@ -73,7 +78,6 @@ data "terraform_remote_state" "base_network" {
 
 # Remote State Locals
 locals {
-  state_bucket_id         = data.terraform_remote_state.main_state.outputs.state_bucket_id
   vpc_id                  = data.terraform_remote_state.base_network.outputs.base_network.vpc_id
   private_subnets         = data.terraform_remote_state.base_network.outputs.base_network.private_subnets
   public_subnets          = data.terraform_remote_state.base_network.outputs.base_network.public_subnets

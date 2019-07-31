@@ -1,15 +1,36 @@
 ###############################################################################
+# State Import Example
+# terraform output state_import_example
+###############################################################################
+output "state_import_example" {
+  description = "An example to use this layers state in another."
+
+  value = <<EOF
+
+  data "terraform_remote_state" "base_network" {
+    backend = "s3"
+
+    config = {
+      bucket  = "${data.terraform_remote_state.main_state.outputs.state_bucket_id}"
+      key     = "terraform.${lower(var.environment)}.000base.tfstate"
+      region  = "${data.terraform_remote_state.main_state.outputs.state_bucket_region}"
+      encrypt = "true"
+    }
+  }
+EOF
+}
+
+###############################################################################
 # Base Network Output
 ###############################################################################
 output "base_network" {
   description = "base_network Module Output"
-  value       = module.base_network
+  value = module.base_network
 }
 
 ###############################################################################
 # NAT Gateways 
 ###############################################################################
-
 # Nat GW1
 data "aws_nat_gateway" "NatAZ1" {
   subnet_id = module.base_network.public_subnets[0]
@@ -17,12 +38,12 @@ data "aws_nat_gateway" "NatAZ1" {
 
 output "NatPublicIPAZ1" {
   description = "The NAT gateway Public IP in Public AZ1"
-  value       = data.aws_nat_gateway.NatAZ1.public_ip
+  value = data.aws_nat_gateway.NatAZ1.public_ip
 }
 
 output "NatPrivateIPAZ1" {
   description = "The NAT gateway private IP in Public AZ1"
-  value       = data.aws_nat_gateway.NatAZ1.private_ip
+  value = data.aws_nat_gateway.NatAZ1.private_ip
 }
 
 # Nat GW1
@@ -32,12 +53,12 @@ data "aws_nat_gateway" "NatAZ2" {
 
 output "NatPublicIPAZ2" {
   description = "The NAT gateway Public IP in Public AZ2"
-  value       = data.aws_nat_gateway.NatAZ2.public_ip
+  value = data.aws_nat_gateway.NatAZ2.public_ip
 }
 
 output "NatPrivateIPAZ2" {
   description = "The NAT gateway private IP in Public AZ2"
-  value       = data.aws_nat_gateway.NatAZ2.private_ip
+  value = data.aws_nat_gateway.NatAZ2.private_ip
 }
 
 ###############################################################################
@@ -45,7 +66,7 @@ output "NatPrivateIPAZ2" {
 ###############################################################################
 output internal_zone {
   description = "Route 53 Internal Zone"
-  value       = module.internal_zone
+  value = module.internal_zone
 }
 
 ###############################################################################
@@ -53,14 +74,13 @@ output internal_zone {
 ###############################################################################
 output "sns_topic" {
   description = "SNS Topic"
-  value       = module.sns_topic
+  value = module.sns_topic
 }
 
 ###############################################################################
 # Summary Output
 # terraform output summary
 ###############################################################################
-
 output "summary" {
   value = <<EOF
 
@@ -94,28 +114,4 @@ output "summary" {
 EOF
 
   description = "Base Network Layer Outputs Summary `terraform output summary` "
-}
-
-###############################################################################
-# State Import Example
-# terraform output state_import_example
-###############################################################################
-
-output "state_import_example" {
-  description = "An example to use this layers state in another."
-
-  value = <<EOF
-
-
-  data "terraform_remote_state" "base_network" {
-    backend = "s3"
-
-    config = {
-      bucket  = "${data.terraform_remote_state.main_state.outputs.state_bucket_id}"
-      key     = "terraform.${lower(var.environment)}.000base.tfstate"
-      region  = "${data.terraform_remote_state.main_state.outputs.state_bucket_region}"
-      encrypt = "true"
-    }
-  }
-EOF
 }

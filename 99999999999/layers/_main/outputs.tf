@@ -37,7 +37,6 @@ output "state_bucket_region" {
 output "state_import_example" {
   value = <<EOF
 
-
   data "terraform_remote_state" "main_state" {
     backend = "local"
 
@@ -54,7 +53,6 @@ EOF
 # Outputs: AMG (Account Management Guidelines)
 # terraform output amg
 ###############################################################################
-
 output "amg" {
   value = <<EOF
 ### AMG
