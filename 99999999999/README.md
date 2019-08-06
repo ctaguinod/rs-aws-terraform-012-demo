@@ -98,3 +98,30 @@ terraform apply
 5. Run `terraform output state_import_example` to display sample remote state import config.
 
 6. Run `terraform output summary` to display resources outputs.
+
+
+## Destroying the test environment.
+
+1. Destroy **200compute** layer. 
+```
+cd 99999999999/layers/Development/200compute/
+terraform destroy
+```
+
+2. Destroy **100data** layer. 
+```
+cd ../100data
+terraform destroy
+```
+
+3. Destroy **000base** layer. 
+```
+cd ../000base
+terraform destroy
+```
+
+4. Destroy **_main** layer. 
+```
+cd ../../_main 
+terraform destroy
+```
